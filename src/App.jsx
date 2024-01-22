@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import './App.css'
+import Header from './components/Header/Header'
+import useMediaQuery from '@mui/material/useMediaQuery';
+import {useEffect, useState} from "react";
+import {Container, ThemeProvider, CssBaseline, Grid} from "@mui/material";
+import { LightTheme, DarkTheme } from './theme/theme';
+import Sidebar from './components/Sidebar/Sidebar';
+import CartContextProvider from './contexts/cartContext';
+import { db } from './config/firebase';
+import { getDocs, collection, query, where } from 'firebase/firestore';
+import ScrapeForm from './ScrapeForm';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark');
+  const [useDarkMode, setDarkMode] = useState(false);
+
+  const dataCollectionRef = collection(db, "products")
+  // useEffect(() => {
+  //   const getData = async() => {
+  //     try {
+  //       // const q = query(dataCollectionRef, where("for", "==", "Dam"), where("category", "==", "Accessoarer"));
+  //       const data = await getDocs(dataCollectionRef);
+  //       const filteredData = data.docs.map((doc) => ({...doc.data(), id:doc.id}))
+
+  //       console.log(filteredData);
+  //     }
+  //     catch(err) {
+  //       console.log(err);
+  //     }
+      
+  //   }
+  //   getData();
+  // }, [])
+  const theme=  useDarkMode ? DarkTheme : LightTheme
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <ThemeProvider theme={theme}>
+        <CartContextProvider>
+          <CssBaseline/>
+          <Header/>
+          <Container sx={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
+            <Grid container>
+              <Grid item md={3}>
+                <Sidebar />
+              </Grid>
+              <Grid item md={9}>
+                <h1>Hello World!</h1>
+                <ScrapeForm />
+              </Grid>
+            </Grid>
+          </Container>
+        </CartContextProvider>
+      </ThemeProvider>
+    )
 }
 
 export default App
