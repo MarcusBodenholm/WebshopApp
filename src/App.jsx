@@ -9,6 +9,8 @@ import CartContextProvider from './contexts/cartContext';
 import { db } from './config/firebase';
 import { getDocs, collection, query, where } from 'firebase/firestore';
 import ScrapeForm from './ScrapeForm';
+import {Route, Routes} from "react-router";
+import Router from './pages/Router';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark');
@@ -38,17 +40,7 @@ function App() {
         <CartContextProvider>
           <CssBaseline/>
           <Header/>
-          <Container sx={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
-            <Grid container>
-              <Grid item md={3}>
-                <Sidebar />
-              </Grid>
-              <Grid item md={9}>
-                <h1>Hello World!</h1>
-                <ScrapeForm />
-              </Grid>
-            </Grid>
-          </Container>
+          <Router />
         </CartContextProvider>
       </ThemeProvider>
     )

@@ -1,0 +1,28 @@
+.selected-preview-image {
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.preview-product-image {
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+
+.main-product-image {
+    width: 554px;
+    height: 678px;
+    opacity: 1;
+    animation-name: fadeIn;
+    animation-iteration-count: 1;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}

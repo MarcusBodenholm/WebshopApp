@@ -1,22 +1,17 @@
 
-import {Stack, Typography, AppBar, Toolbar} from "@mui/material";
-import { useCartContext } from "../../contexts/cartContext";
+import {Stack, Typography, AppBar, Toolbar, Link} from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
-    const {cart, setCart} = useCartContext();
-    const handleClick = () => {
-        setCart({value: cart.value+1})
-    }
     return (
         <AppBar position="relative" sx={{width:"100%"}}>
-            <Toolbar sx={{justifyContent: "space-between", justifySelf:"flex-start", alignSelf:"flex-start", flexDirection: "row", gap:"10px", width:"100%"}}>
+            <Toolbar sx={{justifyContent: "space-between", justifySelf:"flex-start", alignSelf:"flex-start", flexDirection: "row", gap:"10px", width:"100%", marginBottom:"20px"}}>
                 <Stack direction="row" spacing={2}>
-                    <Typography>Women</Typography>
-                    <Typography>Men</Typography>
+                    <Link component={NavLink} to="/store/dam">Dam</Link>
+                    <Link component={NavLink} to="/store/herr">Herr</Link>
                 </Stack>
-                <Typography variant="h2">Top Style</Typography>
+                <Typography textAlign="center" variant="h2" sx={{flexGrow:"1"}}>Top Style</Typography>
                 <Stack direction="row" spacing={1}>
-                    <button onClick={handleClick}>Click me</button>
                     <Typography>Search</Typography>
                     <Typography>Log in</Typography>
                     <Typography>Cart</Typography>

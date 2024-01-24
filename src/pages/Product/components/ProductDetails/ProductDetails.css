@@ -1,0 +1,29 @@
+.css-1sazv7p-MuiStack-root .product-price {
+    color: rgb(112, 0, 22);
+    font-weight: bold;
+}
+.product-price .MuiTypography-h5 {
+    font-style:italic;
+}
+
+.css-1sazv7p-MuiStack-root .product-delivery-time {
+    font-weight: bold;
+}
+
+.product-delivery-time-details {
+    font-style:italic;
+}
+
+.product-size-selector {
+    width: "60%"
+}
+
+.css-1sazv7p-MuiStack-root .add-to-cart-button {
+    background-color: rgb(112, 0, 22);
+    color: white;
+}
+
+.css-1sazv7p-MuiStack-root .add-to-cart-button:hover {
+    background-color: rgb(100, 2, 22);
+    color: white;
+}
