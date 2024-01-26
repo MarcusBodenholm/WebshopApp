@@ -1,14 +1,16 @@
 import "./CartPopperItemCard.css";
 import {Stack, Typography} from "@mui/material"
 import { CloseSharp } from "@mui/icons-material";
-
+import { useCartContext } from "../../contexts/cartContext";
+import priceFormat from "../../helpers/priceFormat";
 
 const CartPopperItemCard = ({item}) => {
-    const priceFormat = input => {
-        const price = String(input);
-        let result = price.length > 3 ? `${price.slice(0, price.length - 3)} ${price.slice(price.length - 3)}` : price;
-        return result
+    const {removeItemFromCart} = useCartContext();
+
+    const handleRemoveItemClick = () => {
+        removeItemFromCart(item.id);
     }
+
     return (
         <Stack direction="row" sx={{width: "100%", maxHeight:"200px"}}>
             <img className="cart-popper-item-card-image" src={item.images[0]} />
@@ -19,7 +21,7 @@ const CartPopperItemCard = ({item}) => {
                 <Typography variant="body1" className="cart-popper-item-card-quantity">Mängd: {item.quantity}</Typography>
                 <Typography variant="body1" className="cart-popper-item-card-price">{priceFormat(item.price * item.quantity)} SEK</Typography>
             </Stack>
-            <CloseSharp className="cart-popper-item-remove-button" />
+            <CloseSharp onClick={handleRemoveItemClick} className="cart-popper-item-remove-button" />
         </Stack>
     )
 }

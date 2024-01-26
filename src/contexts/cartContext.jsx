@@ -8,10 +8,10 @@ export default function CartContextProvider({children}) {
 
     const addItemToCart = item => {
         const newCart = {...cart}
-        if (newCart.items.some(cartItem => cartItem.id === item.id)) {
+        if (newCart.items.some(cartItem => cartItem.id === item.id && cartItem.size === item.size)) {
             const idx = newCart.items.findIndex(cartItem => {
                 console.log(cartItem.id, item.id)
-                return cartItem.id === item.id
+                return cartItem.id === item.id && cartItem.size === item.size
             });
             console.log(idx)
             console.log(newCart.items[idx])
@@ -24,6 +24,15 @@ export default function CartContextProvider({children}) {
         newCart.total = updateCartTotal(newCart);
         newCart.totalItems = updateCartTotalItems(newCart);
         console.log("newCart is: ",newCart);
+        setCart(newCart);
+    }
+    const removeItemFromCart = id => {
+        const newCart = {...cart};
+        newCart.items = newCart.items.filter(item => {
+            return item.id !== id;
+        })
+        newCart.total = updateCartTotal(newCart);
+        newCart.totalItems = updateCartTotalItems(newCart);
         setCart(newCart);
     }
     const updateCartTotal = cart => {
@@ -40,7 +49,7 @@ export default function CartContextProvider({children}) {
         return totalItems;
     }
     return (
-        <CartContext.Provider value={{cart, setCart, addItemToCart}}>
+        <CartContext.Provider value={{cart, setCart, addItemToCart, removeItemFromCart}}>
             {children}
         </CartContext.Provider>
     )

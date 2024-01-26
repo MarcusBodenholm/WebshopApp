@@ -6,6 +6,7 @@ import {Container, ThemeProvider, CssBaseline, Grid} from "@mui/material";
 import { LightTheme, DarkTheme } from './theme/theme';
 import Sidebar from './components/Sidebar/Sidebar';
 import CartContextProvider from './contexts/cartContext';
+import DataContextProvider from './contexts/dataContext';
 import { db } from './config/firebase';
 import { getDocs, collection, query, where } from 'firebase/firestore';
 import ScrapeForm from './ScrapeForm';
@@ -38,9 +39,11 @@ function App() {
   return (
       <ThemeProvider theme={theme}>
         <CartContextProvider>
-          <CssBaseline/>
-          <Header/>
-          <Router />
+          <DataContextProvider>
+            <CssBaseline/>
+            <Header/>
+            <Router />
+          </DataContextProvider>
         </CartContextProvider>
       </ThemeProvider>
     )

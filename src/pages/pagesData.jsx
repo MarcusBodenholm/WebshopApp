@@ -1,7 +1,6 @@
 
 import Product from "./Product/Product";
-
-
+import Store from "./Store/Store";
 const pagesData = [
     {
         path: "",
@@ -20,17 +19,17 @@ const pagesData = [
     },
     {
         path: "store",
-        element: <Product/>,
+        element: <Store/>,
         title: "product"
     },
     {
         path: "store/herr",
-        element: <h1>Hello herr!</h1>,
+        element: <Store department="dam"/>,
         title: "product"
     },
     {
         path: "store/dam",
-        element: <h1>Hello dam!</h1>,
+        element: <Store department="dam"/>,
         title: "product"
     },
     {

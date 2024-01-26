@@ -1,0 +1,9 @@
+.MuiStack-root .header-search-bar-button {
+    background-color: rgb(112, 0, 22);
+    color: white;
+}
+
+.MuiStack-root .header-search-bar-button:hover {
+    background-color: rgb(100, 2, 22);
+    color: white;
+}

@@ -3,6 +3,7 @@ import {Stack, Typography, FormControl, InputLabel, Select, MenuItem, Button, Ac
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import "./ProductDetails.css"
 import { useCartContext } from '../../../../contexts/cartContext';
+import priceFormat from '../../../../helpers/priceFormat';
 
 const ProductDetails = ({productInfo}) => {
     const [size, setSize] = useState("s")
@@ -25,8 +26,7 @@ const ProductDetails = ({productInfo}) => {
         }
         addItemToCart(itemToAdd);
     }
-    let price = String(Math.round(Number(productInfo.price)));
-    price = price.length > 3 ? `${price.slice(0, price.length - 3)} ${price.slice(price.length - 3)}` : price;
+    const price = priceFormat(productInfo.price)
     return (
         <Stack direction="column" spacing={2}>
             <Typography variant="h5" className='product-price' paragraph>Pris: <Typography component="span" variant="h5">{price} SEK</Typography></Typography>

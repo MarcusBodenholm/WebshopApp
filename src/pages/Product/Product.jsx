@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, useLocation } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 import {Container, Stack} from "@mui/material"
 import BreadcrumbsNavigation from "../../components/BreadcrumbsNavigation/BreadcrumbsNavigation";
 import ProductHeader from "./components/ProductHeader/ProductHeader";
@@ -38,9 +38,7 @@ const Product = () => {
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState({});
     const [searchParams,] = useSearchParams();
-    const location = useLocation();
     console.log(productInfo.images)
-    const crumbs = ["home", ...location.pathname.split("/").slice(1)]
     useEffect(() => {
         const productId = searchParams.get("product");
         const getProductInfo = async(id) => {
@@ -53,7 +51,7 @@ const Product = () => {
     })
     return (
         <Container>
-            <BreadcrumbsNavigation input={crumbs} />
+            <BreadcrumbsNavigation />
             {loading ? <h1>Loading...</h1> : 
             <Stack direction="row" spacing={4}>
                 <ProductImageGallery images={product.images}/>

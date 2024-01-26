@@ -5,6 +5,7 @@ import "./CartPopperItem.css"
 
 const CartPopperItem = () => {
     const {cart} = useCartContext();
+
     let total = String(Math.round(Number(cart.total)));
     total = total.length > 3 ? `${total.slice(0, total.length - 3)} ${total.slice(total.length - 3)}` : total;
     return (
@@ -18,7 +19,7 @@ const CartPopperItem = () => {
                             <Typography variant="body1">Din varukorg är tom</Typography>
                                                  :
                             cart.items.map((item, idx) => {
-                                return (<><CartPopperItemCard item={item} key={idx}/> {cart.items.length - 1 === idx ? <></> : <Divider/>}</>)
+                                return (<CartPopperItemCard item={item} key={idx}/>)
                             })
                         }
 

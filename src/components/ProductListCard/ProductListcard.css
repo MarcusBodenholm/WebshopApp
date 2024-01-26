@@ -1,0 +1,26 @@
+.product-card-image {
+    height: 200px;
+}
+.product-card-container:hover {
+    -webkit-box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.5);
+    border: 1px solid rgb(112, 0, 22);
+    border-radius: 5px;
+    
+}
+.MuiStack-root .product-card-brand {
+    font-weight: bold;
+    font-size: 1rem;
+}
+.MuiStack-root .product-card-title {
+    font-size: 0.9rem;
+}
+
+.MuiStack-root .product-card-price {
+    color: rgb(112, 0, 22);
+    font-weight: bold;
+    margin-top: auto;
+}
+
+
