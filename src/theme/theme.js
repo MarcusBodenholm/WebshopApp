@@ -2,12 +2,22 @@ import { createTheme, responsiveFontSizes } from "@mui/material";
 const BaseLightTheme = createTheme({
     palette: {
         mode: "light",
+        info: {
+            main: "#700016",
+        }
     },
     components: {
         MuiAppBar: {
             defaultProps: {
                 color: "transparent",
-                elevation: 0,
+                elevation: 2,
+            }
+        },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 0,
+                }
             }
         }
     }

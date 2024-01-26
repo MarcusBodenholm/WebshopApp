@@ -1,0 +1,37 @@
+.css-cou849-MuiStack-root .cart-popper-item-card-brand {
+    font-style: italic;
+    font-size: 0.7rem;
+}
+
+.css-cou849-MuiStack-root .cart-popper-item-card-title{
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-wrap: wrap;
+}
+
+.css-cou849-MuiStack-root .cart-popper-item-card-size{
+    margin-top: 3px;
+    font-size: 0.8rem;
+}
+
+.css-cou849-MuiStack-root .cart-popper-item-card-quantity {
+    font-size: 0.8rem;
+}
+
+.css-cou849-MuiStack-root .cart-popper-item-card-price {
+    font-weight: bold;
+}
+.cart-popper-item-card-image {
+    width: 90px;
+    height: 140px;
+}
+.cart-popper-item-remove-button {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    justify-self: end;
+}
+.cart-popper-item-remove-button:hover {
+    transform:scale(1.1);
+    color: rgb(112, 0, 22);
+}

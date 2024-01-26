@@ -20,11 +20,12 @@ const ProductDetails = ({productInfo}) => {
             brand: productInfo.brand,
             category: productInfo.category,
             for: productInfo.for,
-            id: productInfo.id
+            id: productInfo.id,
+            images: productInfo.images
         }
         addItemToCart(itemToAdd);
     }
-    let price = productInfo.price;
+    let price = String(Math.round(Number(productInfo.price)));
     price = price.length > 3 ? `${price.slice(0, price.length - 3)} ${price.slice(price.length - 3)}` : price;
     return (
         <Stack direction="column" spacing={2}>

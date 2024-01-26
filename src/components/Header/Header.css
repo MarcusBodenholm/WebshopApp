@@ -1,0 +1,36 @@
+.supreme-cart-container {
+    flex-grow: 1;
+    max-width: 300px;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 2px solid rgb(112, 0, 22);
+    border-left: 2px solid rgb(112, 0, 22);
+    border-right: 2px solid rgb(112, 0, 22);
+    padding-right: 5px;
+    padding-top: 3px;
+    background-color: white;
+    z-index: 3;
+}
+
+.supreme-cart-container-inactive {
+    flex-grow: 1;
+    max-width: 300px;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 5px;
+    padding-top: 5px;
+    z-index: 3;
+}
+.popper-container {
+    width: 300px;
+    max-height: 500px;
+    border-bottom: 2px solid rgb(112, 0, 22);
+    border-left: 2px solid rgb(112, 0, 22);
+    border-right: 2px solid rgb(112, 0, 22);
+    border-radius: 0;
+    margin-top: -2px;
+    padding: 10px;
+}
+.css-1ps6pg7-MuiPaper-root {
+    border-radius: 0;
+}

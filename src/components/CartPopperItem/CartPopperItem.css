@@ -1,0 +1,22 @@
+
+.cart-summary .go-to-checkout-button {
+    margin-top: 10px;
+    background-color: rgb(112, 0, 22);
+    color: white;
+}
+
+.cart-summary .go-to-checkout-button:hover {
+    background-color: rgb(100, 2, 22);
+    color: white;
+}
+.order-summary-text {
+    margin-bottom: 0;
+}
+
+.cart-summary {
+    margin-bottom: 10px;
+}
+
+.css-gmwslw-MuiStack-root .cart-total-sum-title {
+    font-weight: bold;
+}

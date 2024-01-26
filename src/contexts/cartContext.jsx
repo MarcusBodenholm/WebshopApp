@@ -22,15 +22,22 @@ export default function CartContextProvider({children}) {
             newCart.items = [...newCart.items, newItem]
         }
         newCart.total = updateCartTotal(newCart);
+        newCart.totalItems = updateCartTotalItems(newCart);
         console.log("newCart is: ",newCart);
         setCart(newCart);
     }
     const updateCartTotal = cart => {
         const total = cart.items.reduce((acc,curr) => {
-            const itemPrice = Number(curr.price);
+            const itemPrice = Math.round(Number(curr.price));
             return acc + (itemPrice * curr.quantity)
         },0)
         return total;
+    }
+    const updateCartTotalItems = cart => {
+        const totalItems = cart.items.reduce((acc, curr) => {
+            return acc + curr.quantity;
+        }, 0)
+        return totalItems;
     }
     return (
         <CartContext.Provider value={{cart, setCart, addItemToCart}}>

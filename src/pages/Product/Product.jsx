@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useLocation } from "react-router-dom"
-import {Container, Stack, Typography, Paper, Breadcrumbs, Link} from "@mui/material"
+import {Container, Stack} from "@mui/material"
 import BreadcrumbsNavigation from "../../components/BreadcrumbsNavigation/BreadcrumbsNavigation";
 import ProductHeader from "./components/ProductHeader/ProductHeader";
 import ProductImageGallery from "./components/ProductImageGallery/ProductImageGallery";
@@ -37,7 +37,7 @@ const productInfo = {
 const Product = () => {
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState({});
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams,] = useSearchParams();
     const location = useLocation();
     console.log(productInfo.images)
     const crumbs = ["home", ...location.pathname.split("/").slice(1)]
