@@ -1,9 +1,10 @@
 import {Typography, Container, Stack} from "@mui/material"
 import BreadcrumbsNavigation from "../../components/BreadcrumbsNavigation/BreadcrumbsNavigation"
-import ProductList from "../../components/ProductList/ProductList"
+import ProductList from "./components/ProductList/ProductList"
 import { useSearchParams, useLocation } from "react-router-dom"
 import StoreHeader from "./components/StoreHeader/StoreHeader"
 import useDataContext from "../../contexts/useDataContext"
+import CategorySideBar from "./components/CategorySidebar/CategorySideBar"
 
 const Store = () => {
     const [searchParams,] = useSearchParams();
@@ -18,17 +19,23 @@ const Store = () => {
     }
     const department = getDepartment();
     console.log(department);
+    const category = searchParams.get("category");
     const query = searchParams.get("query");
     return (
         <Container sx={{marginTop:"10px"}}>
             <BreadcrumbsNavigation />
-            {query ? 
-            <Stack sx={{marginBottom:"15px"}}>
-                <Typography variant="h5">Sökresultat för {query}: {data.length} resultat</Typography>
-            </Stack>    
-            : <StoreHeader department={department} />
-            }
-            <ProductList />
+            <Stack direction="row">
+                <CategorySideBar department={department}/>
+                <Stack direction="column" sx={{marginLeft:"10px"}}>
+                    {query ? 
+                    <Stack sx={{marginBottom:"15px"}}>
+                        <Typography variant="h5">Sökresultat för {query}: {data.length} resultat</Typography>
+                    </Stack>    
+                    : <StoreHeader department={department} category={category} />
+                    }
+                    <ProductList />
+                </Stack>
+            </Stack>
         </Container>
     )
 }

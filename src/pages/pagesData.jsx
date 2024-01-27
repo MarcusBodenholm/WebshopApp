@@ -1,10 +1,11 @@
-
+import Homepage from "./Homepage/Homepage";
 import Product from "./Product/Product";
 import Store from "./Store/Store";
+import LoginRegister from "./LoginRegister/LoginRegister";
 const pagesData = [
     {
         path: "",
-        element: <h1>Hello World!</h1>,
+        element: <Homepage />,
         title: "home"
     },
     {
@@ -41,6 +42,16 @@ const pagesData = [
         path: "store/dam/product",
         element: <Product/>,
         title: "product"
+    },
+    {
+        path: "login",
+        element: <LoginRegister/>,
+        title: "Login"
+    },
+    {
+        path: "register",
+        element: <LoginRegister/>,
+        title: "Register"
     }
 ]
 

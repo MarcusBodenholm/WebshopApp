@@ -3,16 +3,16 @@ import DamHeader from "./DamHeader";
 import HerrHeader from "./HerrHeader";
 import useDataContext from "../../../../contexts/useDataContext";
 
-const StoreHeader = ({department}) => {
+const StoreHeader = ({department, category}) => {
     const {data} = useDataContext();
     if (department === "herr") {
         console.log("triggered herr")
-        return <HerrHeader amount={data.length}/>
+        return <HerrHeader amount={data.length} category={category}/>
     }
     if (department === "dam") {
         console.log("triggered dam")
 
-        return <DamHeader amount={data.length}/>
+        return <DamHeader amount={data.length} category={category}/>
     }
     return (
         <Stack>

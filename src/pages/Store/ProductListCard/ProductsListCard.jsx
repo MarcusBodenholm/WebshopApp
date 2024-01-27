@@ -1,5 +1,5 @@
 import "./ProductListCard.css";
-import priceFormat from "../../helpers/priceFormat";
+import priceFormat from "../../../helpers/priceFormat";
 import {Grid, Typography, Card, Link, Stack} from "@mui/material";
 import {NavLink} from "react-router-dom"
 

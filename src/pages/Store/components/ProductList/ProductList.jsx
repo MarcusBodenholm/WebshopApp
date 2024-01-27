@@ -1,10 +1,10 @@
 import "./ProductList.css";
 import {useEffect, useState} from "react"
-import { products } from "../../DummyData";
-import ProductsListCard from "../ProductListCard/ProductsListCard";
+import { products } from "../../../../DummyData";
+import ProductsListCard from "../../ProductListCard/ProductsListCard";
 import {Grid, Stack, FormControl, Select, InputLabel, MenuItem, Divider} from "@mui/material"
 import { useSearchParams, useLocation } from "react-router-dom"
-import useDataContext from "../../contexts/useDataContext";
+import useDataContext from "../../../../contexts/useDataContext";
 
 const ProductList = ({props}) => {
     const {data, setData} = useDataContext();
@@ -13,7 +13,7 @@ const ProductList = ({props}) => {
     const [sortByState, setSortByState] = useState("");
     const location = useLocation();
     const query = searchParams.get("query");
-
+    const category = searchParams.get("category");
     const getDepartment = () => {
         const pathArray = location.pathname.split("/");
         if (pathArray.length === 3) {
@@ -77,6 +77,13 @@ const ProductList = ({props}) => {
             if (department) {
                 output = output.filter(item => {
                     if (item.for === capitalize(department)) {
+                        return item;
+                    }
+                })
+            }
+            if (category) {
+                output = output.filter(item => {
+                    if (item.category.includes(capitalize(category))) {
                         return item;
                     }
                 })

@@ -1,16 +1,14 @@
 // import './App.css'
 import Header from './components/Header/Header'
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {useEffect, useState} from "react";
-import {Container, ThemeProvider, CssBaseline, Grid} from "@mui/material";
+import { useState} from "react";
+import { ThemeProvider, CssBaseline, Grid} from "@mui/material";
 import { LightTheme, DarkTheme } from './theme/theme';
-import Sidebar from './components/Sidebar/Sidebar';
 import CartContextProvider from './contexts/cartContext';
 import DataContextProvider from './contexts/dataContext';
+import UserContextProvider from './contexts/userContext';
 import { db } from './config/firebase';
-import { getDocs, collection, query, where } from 'firebase/firestore';
-import ScrapeForm from './ScrapeForm';
-import {Route, Routes} from "react-router";
+import { collection } from 'firebase/firestore';
 import Router from './pages/Router';
 
 function App() {
@@ -38,13 +36,15 @@ function App() {
 
   return (
       <ThemeProvider theme={theme}>
-        <CartContextProvider>
-          <DataContextProvider>
-            <CssBaseline/>
-            <Header/>
-            <Router />
-          </DataContextProvider>
-        </CartContextProvider>
+        <UserContextProvider>
+          <CartContextProvider>
+            <DataContextProvider>
+                <CssBaseline/>
+                <Header/>
+                <Router />
+            </DataContextProvider>
+          </CartContextProvider>
+        </UserContextProvider>
       </ThemeProvider>
     )
 }

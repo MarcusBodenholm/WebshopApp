@@ -9,6 +9,11 @@
     background-color: rgb(100, 2, 22);
     color: white;
 }
+.cart-summary .go-to-checkout-button:disabled {
+    background-color: rgb(100, 2, 22);
+    color: gray;
+}
+
 .order-summary-text {
     margin-bottom: 0;
 }

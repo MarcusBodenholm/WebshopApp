@@ -1,0 +1,30 @@
+.category-list-item {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.category-list-item:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background-color: rgb(143, 4, 32);
+}
+.category-list-item-active {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background-color: rgb(112, 0, 22);
+    border-radius: 5px;
+}
+
+.category-list-department-link {
+    color: black;
+}
+.category-list-department-link:hover {
+    color: rgb(112, 0, 22);
+}
+
+.category-list-department-link-active {
+    color: rgb(100, 0, 22);
+    text-decoration: underline;
+}

@@ -7,6 +7,7 @@ import CartPopperItem from "../CartPopperItem/CartPopperItem";
 import { useCartContext } from "../../contexts/cartContext";
 import TopStyleLogo from "../../assets/topstyle.png"
 import SearchBar from "../SearchBar/SearchBar";
+import AccountMenu from "../AccountMenu/AccountMenu";
 
 const Header = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -68,8 +69,8 @@ const Header = () => {
 
                             </Stack>
                         </Stack>
-                        <Stack sx={{width: "300px", alignItem:"flex-end"}}>
-                            <Typography textAlign="end">Logga in</Typography>
+                        <Stack sx={{width: "300px", alignItems:"flex-end"}}>
+                            <AccountMenu />
                         </Stack>
                         
                     </Stack>

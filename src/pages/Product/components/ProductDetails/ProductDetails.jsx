@@ -4,15 +4,17 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import "./ProductDetails.css"
 import { useCartContext } from '../../../../contexts/cartContext';
 import priceFormat from '../../../../helpers/priceFormat';
+import useUserContext from '../../../../contexts/useUserContext';
 
 const ProductDetails = ({productInfo}) => {
     const [size, setSize] = useState("s")
-
+    const {authUser} = useUserContext();
     const handleSizeChange = event => {
         setSize(event.target.value);
     }
     const {addItemToCart} = useCartContext();
     const handleAddToCart = () => {
+        console.log(productInfo)
         const itemToAdd = {
             size: size,
             title: productInfo.title,
@@ -42,7 +44,7 @@ const ProductDetails = ({productInfo}) => {
                 Leveranstid: 
                 <Typography variant="body2" component="span" className="product-delivery-time-details"> {productInfo.deliveryTime}</Typography>
             </Typography>
-            <Button variant="outlined" className="add-to-cart-button" onClick={handleAddToCart}>Lägg i varukorg</Button>
+            <Button variant="outlined" disabled={authUser === null} className="add-to-cart-button" onClick={handleAddToCart}>Lägg i varukorg</Button>
             {productInfo.description.length > 0 ? 
             <Accordion>
                 <AccordionSummary expandIcon={<ArrowDropDownIcon />} aria-controls="description-content" id='description-header'>
