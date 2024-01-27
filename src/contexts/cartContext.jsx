@@ -55,15 +55,19 @@ export default function CartContextProvider({children}) {
             addDoc(colRef, data).catch(error => console.log(error))
         }
     }   
-    const removeItemFromCart = id => {
+    const removeItemFromCart = (id, size) => {
         const newCart = {...cart};
         newCart.items = newCart.items.filter(item => {
-            return item.id !== id;
+            return item.id !== id || item.size !== size;
         })
         newCart.total = updateCartTotal(newCart);
         newCart.totalItems = updateCartTotalItems(newCart);
         setCart(newCart);
         uploadCartToFireBase(newCart);
+    }
+    const resetCart = () => {
+        const newResetCart = {items:[], total:0}
+        uploadCartToFireBase(newResetCart);
     }
     const updateCartTotal = cart => {
         const total = cart.items.reduce((acc,curr) => {

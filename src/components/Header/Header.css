@@ -1,6 +1,6 @@
 .supreme-cart-container {
-    flex-grow: 1;
     max-width: 300px;
+    min-width: 300px;
     justify-content: flex-end;
     align-items: center;
     border-top: 2px solid rgb(112, 0, 22);
@@ -13,8 +13,8 @@
 }
 
 .supreme-cart-container-inactive {
-    flex-grow: 1;
     max-width: 300px;
+    min-width: 300px;
     justify-content: flex-end;
     align-items: center;
     padding-right: 5px;

@@ -8,7 +8,7 @@ const CartPopperItemCard = ({item}) => {
     const {removeItemFromCart} = useCartContext();
 
     const handleRemoveItemClick = () => {
-        removeItemFromCart(item.id);
+        removeItemFromCart(item.id, item.size);
     }
 
     return (
