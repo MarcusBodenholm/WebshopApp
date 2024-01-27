@@ -4,7 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import {ShoppingCartSharp} from "@mui/icons-material";
 import { useRef, useState } from "react";
 import CartPopperItem from "../CartPopperItem/CartPopperItem";
-import { useCartContext } from "../../contexts/cartContext";
+import useCartContext from "../../contexts/useCartContext";
 import TopStyleLogo from "../../assets/topstyle.png"
 import SearchBar from "../SearchBar/SearchBar";
 import AccountMenu from "../AccountMenu/AccountMenu";

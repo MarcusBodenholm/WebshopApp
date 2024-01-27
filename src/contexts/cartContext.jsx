@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import { collection, addDoc, doc, query, where, limit, getDoc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import useUserContext from "./useUserContext";
@@ -92,10 +92,3 @@ export default function CartContextProvider({children}) {
     )
 }
 
-export function useCartContext() {
-    const context = useContext(CartContext);
-    if (!context) {
-        throw new Error("useCartContext must be used within a CartContextProvider");
-    }
-    return context;
-}

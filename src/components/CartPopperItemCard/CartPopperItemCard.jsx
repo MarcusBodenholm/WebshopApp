@@ -1,7 +1,7 @@
 import "./CartPopperItemCard.css";
 import {Stack, Typography} from "@mui/material"
 import { CloseSharp } from "@mui/icons-material";
-import { useCartContext } from "../../contexts/cartContext";
+import useCartContext from "../../contexts/useCartContext";
 import priceFormat from "../../helpers/priceFormat";
 
 const CartPopperItemCard = ({item}) => {

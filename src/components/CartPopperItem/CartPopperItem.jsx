@@ -1,4 +1,4 @@
-import {useCartContext} from "../../contexts/cartContext"
+import useCartContext from "../../contexts/useCartContext"
 import {Stack, Typography, Button, Divider} from "@mui/material"
 import CartPopperItemCard from "../CartPopperItemCard/CartPopperItemCard"
 import "./CartPopperItem.css"

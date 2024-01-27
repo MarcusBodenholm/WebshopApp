@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {Stack, Typography, FormControl, InputLabel, Select, MenuItem, Button, Accordion, AccordionDetails, AccordionSummary} from "@mui/material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import "./ProductDetails.css"
-import { useCartContext } from '../../../../contexts/cartContext';
+import useCartContext from '../../../../contexts/useCartContext';
 import priceFormat from '../../../../helpers/priceFormat';
 import useUserContext from '../../../../contexts/useUserContext';
 
