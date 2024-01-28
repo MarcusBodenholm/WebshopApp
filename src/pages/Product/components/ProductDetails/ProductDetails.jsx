@@ -14,7 +14,6 @@ const ProductDetails = ({productInfo}) => {
     }
     const {addItemToCart} = useCartContext();
     const handleAddToCart = () => {
-        console.log(productInfo)
         const itemToAdd = {
             size: size,
             title: productInfo.title,

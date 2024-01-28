@@ -1,0 +1,39 @@
+.MuiStack-root .checkout-item-card-brand {
+    font-style: italic;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.MuiStack-root .checkout-item-card-title{
+    font-weight: bold;
+    font-size: 1rem;
+    text-wrap: wrap;
+}
+
+.css-cou849-MuiStack-root .checkout-item-card-size{
+    margin-top: 3px;
+    font-size: 1rem;
+}
+
+.MuiStack-root .checkout-item-card-quantity {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.MuiStack-root .checkout-item-card-price {
+    font-weight: bold;
+}
+.checkout-item-card-image {
+    height: 127px;
+    width: 85px;
+    margin-right: 15px;
+}
+.checkout-item-button {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+.checkout-item-button:hover {
+    transform:scale(1.1);
+    color: rgb(112, 0, 22);
+}

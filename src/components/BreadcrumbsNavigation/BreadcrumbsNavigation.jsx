@@ -10,10 +10,10 @@ const Capitalize = string => {
 const BreadcrumbsNavigation = () => {
     const [searchParams,] = useSearchParams();
     const location= useLocation();
-    const crumbs = ["home", ...location.pathname.split("/").slice(1)]
+    const crumbs = ["start", ...location.pathname.split("/").slice(1)]
     const name = searchParams.get("title");
     return (
-        <div role="presentation" onClick={() => console.log("You clicked")} style={{marginBottom:"10px"}}>
+        <div role="presentation" style={{marginBottom:"10px"}}>
             <Breadcrumbs aria-label="breadcrumb">
                 {crumbs.map((crumb, idx) => {
                     let href = "";

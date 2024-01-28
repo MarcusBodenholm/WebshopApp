@@ -1,0 +1,10 @@
+.MuiDialogActions-root .button-on-login-form {
+    background-color: rgb(112, 0, 22);
+    color: white;
+}
+
+.MuiDialogActions-root .button-on-login-form:hover {
+    background-color: rgb(100, 2, 22);
+    color: white;
+    transform: scale(1.005);
+}

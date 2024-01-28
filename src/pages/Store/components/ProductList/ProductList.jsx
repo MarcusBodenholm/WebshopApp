@@ -6,7 +6,7 @@ import {Grid, Stack, FormControl, Select, InputLabel, MenuItem, Divider} from "@
 import { useSearchParams, useLocation } from "react-router-dom"
 import useDataContext from "../../../../contexts/useDataContext";
 
-const ProductList = ({props}) => {
+const ProductList = () => {
     const {data, setData} = useDataContext();
     const [loading, setLoading] = useState(true);
     const [searchParams,] = useSearchParams();
@@ -92,7 +92,6 @@ const ProductList = ({props}) => {
         }
         const fetchedData = fetchProducts();
         const filteredProducts = filterProducts(fetchedData);
-        console.log(fetchedData)
         setData(filteredProducts);
         setLoading(false);
     },[query, location])
@@ -102,9 +101,9 @@ const ProductList = ({props}) => {
             {loading ? <h1>Loading...</h1> : 
                 <Stack>
                     <Stack sx={{marginBottom:"5px"}}>
-                        <FormControl className="product-list-sort-container">
+                        <FormControl  className="product-list-sort-container">
                             <InputLabel id="sort-products-by-label">Sortera efter</InputLabel>
-                            <Select labelId="sort-products-by-label" id="sort-products-by" value={sortByState}  label="Sortera efter" onChange={handleSortChange}>
+                            <Select  labelId="sort-products-by-label" id="sort-products-by" value={sortByState}  label="Sortera efter" onChange={handleSortChange}>
                                 <MenuItem value="price-high">Pris - Högt till lågt</MenuItem>
                                 <MenuItem value="price-low">Pris - Lågt till högt</MenuItem>
                                 <MenuItem value="alphabetical">Alfabetisk - titel</MenuItem>
@@ -113,7 +112,7 @@ const ProductList = ({props}) => {
                         </FormControl>
                     </Stack>
                     <Divider sx={{marginTop:"10px"}}/>
-                    <Grid container spacing={2} sx={{marginTop:"2px"}}>
+                    <Grid container spacing={2} sx={{marginTop:"2px", justifyContent:"space-around"}}>
                         {data.map((product, idx) => {
                             return <ProductsListCard product={product} key={idx} department={department}/>
                         })}

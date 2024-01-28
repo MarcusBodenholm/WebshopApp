@@ -3,10 +3,15 @@ import {Stack, Typography, Button, Divider} from "@mui/material"
 import CartPopperItemCard from "../CartPopperItemCard/CartPopperItemCard"
 import "./CartPopperItem.css"
 import useUserContext from "../../contexts/useUserContext"
+import {useNavigate} from "react-router-dom"
 
 const CartPopperItem = () => {
     const {cart} = useCartContext();
     const {authUser} = useUserContext();
+    const navigate = useNavigate();
+    const handleGotoCheckoutClick = () => {
+        navigate("/checkout")
+    }
     let total = String(Math.round(Number(cart.total)));
     total = total.length > 3 ? `${total.slice(0, total.length - 3)} ${total.slice(total.length - 3)}` : total;
     return (
@@ -33,7 +38,7 @@ const CartPopperItem = () => {
                         <Typography variant="subtitle1" className="cart-total-sum-title">Totalsumma: </Typography>
                         <Typography variant="body1">{total} SEK</Typography>
                     </Stack>
-                    <Button variant="outlined" disabled={authUser === null} className="go-to-checkout-button">Gå till kassan</Button>
+                    <Button variant="outlined" onClick={handleGotoCheckoutClick} disabled={authUser === null || cart.totalItems === 0} className="go-to-checkout-button">Gå till kassan</Button>
                 </Stack>
             </Stack>
         </>

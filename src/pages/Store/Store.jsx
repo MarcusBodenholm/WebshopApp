@@ -18,7 +18,6 @@ const Store = () => {
         return null;
     }
     const department = getDepartment();
-    console.log(department);
     const category = searchParams.get("category");
     const query = searchParams.get("query");
     return (
@@ -29,7 +28,7 @@ const Store = () => {
                 <Stack direction="column" sx={{marginLeft:"10px"}}>
                     {query ? 
                     <Stack sx={{marginBottom:"15px"}}>
-                        <Typography variant="h5">Sökresultat för {query}: {data.length} resultat</Typography>
+                        <Typography variant="h5">Sökresultat för {query}: {data.length} träffar</Typography>
                     </Stack>    
                     : <StoreHeader department={department} category={category} />
                     }

@@ -34,7 +34,7 @@ const Header = () => {
                     <Stack direction="row" sx={{justifyContent: "space-between", alignItems:"center", flexDirection: "row", gap:"10px", width:"100%", marginBottom:"10px"}}>
                         <SearchBar />
                         <div style={{display:"flex", flexGrow:"1", justifyContent:"center"}}>
-                            <img src={TopStyleLogo} style={{width: "200px"}}/>
+                            <Link component={NavLink} to="/"><img src={TopStyleLogo} style={{width: "200px"}}/></Link>
                         </div>
                         
                         {/* <Typography textAlign="center" variant="h2" sx={{flexGrow:"1", paddingLeft:"50px"}}>Top Style</Typography> */}

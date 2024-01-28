@@ -19,7 +19,7 @@ const CartPopperItemCard = ({item}) => {
                 <Typography variant="body1" className="cart-popper-item-card-title">{item.title}</Typography>
                 <Typography variant="body1" className="cart-popper-item-card-size">Storlek: {item.size.toUpperCase()}</Typography>
                 <Typography variant="body1" className="cart-popper-item-card-quantity">Mängd: {item.quantity}</Typography>
-                <Typography variant="body1" className="cart-popper-item-card-price">{priceFormat(item.price * item.quantity)} SEK</Typography>
+                <Typography variant="body1" className="cart-popper-item-card-price">{priceFormat(Number(item.price.replace(',', '.')) * item.quantity)} SEK</Typography>
             </Stack>
             <CloseSharp onClick={handleRemoveItemClick} className="cart-popper-item-remove-button" />
         </Stack>

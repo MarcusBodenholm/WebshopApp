@@ -2,19 +2,23 @@ import "./AccountMenu.css";
 import { useState, useRef, useEffect } from "react";
 import {Typography, Stack, Popper, Paper, Grow, ClickAwayListener, MenuList, MenuItem, Link} from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { auth, googleProvider } from "../../config/firebase";
+import { auth } from "../../config/firebase";
 import useUserContext from "../../contexts/useUserContext";
-import { useNavigate } from "react-router-dom";
 import LoginDialog from "../LoginDialog/LoginDialog";
+import RegisterDialog from "../RegisterDialog/RegisterDialog";
 const AccountMenu = () => {
     const [open, setOpen] = useState(false);
     const [loginOpen, setLoginOpen] = useState(false);
+    const [registerOpen, setRegisterOpen] = useState(false);
+
     const {authUser} = useUserContext(); 
-    const navigate = useNavigate();
     const anchorRef = useRef(null);
 
     const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
+        if (loginOpen === false) {
+            setOpen((prevOpen) => !prevOpen);
+        }
+        
     };
   
     const handleClose = (event) => {
@@ -34,11 +38,18 @@ const AccountMenu = () => {
     }    
     const prevOpen = useRef(open);
     const handleLogoutClick= () => {
+        setOpen(false);
         auth.signOut();
     }
     const handleLoginClick = () => {
+        setOpen(false);
         setLoginOpen(true);
     }
+    const handleRegisterClick = () => {
+        setOpen(false);
+        setRegisterOpen(true);
+    }
+
     useEffect(() => {
         if (prevOpen.current === true && open === false) {
             anchorRef.current.focus();
@@ -78,16 +89,14 @@ const AccountMenu = () => {
                             aria-labelledby="composition-button"
                             onKeyDown={handleListKeyDown}
                         >
-                            {authUser === null ? <><MenuItem onClick={handleLoginClick}>Logga in</MenuItem> 
-                                <MenuItem onClick={handleLoginClick}>Registrera</MenuItem>
+                            {authUser === null ? [<MenuItem onClick={handleLoginClick} key={"logga in"}>Logga in</MenuItem>, 
+                                <MenuItem onClick={handleRegisterClick} key={"Registrera"}>Registrera</MenuItem>]
                             
-                            </>
+                            : [
+                                <MenuItem onClick={handleClose} key={"myaccount"}>Mitt konto</MenuItem>,
+                                <MenuItem onClick={handleLogoutClick} key={"logout"}>Logga ut</MenuItem>
                             
-                            : <> 
-                                <MenuItem onClick={handleClose}>Mitt konto</MenuItem>
-                                <MenuItem onClick={handleLogoutClick}>Logga ut</MenuItem>
-                            
-                            </>}
+                            ]}
                         </MenuList>
                         </ClickAwayListener>
                     </Paper>
@@ -95,6 +104,7 @@ const AccountMenu = () => {
             )}
             </Popper>
             <LoginDialog loginOpen={loginOpen} setLoginOpen={setLoginOpen}/>
+            <RegisterDialog registerOpen={registerOpen} setRegisterOpen={setRegisterOpen}/>
         </Stack>
     )
 }

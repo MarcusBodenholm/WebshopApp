@@ -1,7 +1,8 @@
 import Homepage from "./Homepage/Homepage";
+import OrderPage from "./OrderPage/OrderPage";
 import Product from "./Product/Product";
 import Store from "./Store/Store";
-import LoginRegister from "./LoginRegister/LoginRegister";
+import Success from "./Success/Success";
 const pagesData = [
     {
         path: "",
@@ -44,14 +45,14 @@ const pagesData = [
         title: "product"
     },
     {
-        path: "login",
-        element: <LoginRegister/>,
-        title: "Login"
+        path:"checkout",
+        element:<OrderPage />,
+        title:"Beställ"
     },
     {
-        path: "register",
-        element: <LoginRegister/>,
-        title: "Register"
+        path:"success",
+        element:<Success />,
+        title:"Framgång!"
     }
 ]
 

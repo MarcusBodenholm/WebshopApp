@@ -7,7 +7,7 @@ import useUserContext from "./useUserContext";
 export const CartContext = createContext(null);
 
 export default function CartContextProvider({children}) {
-    const [cart, setCart] = useState({items:[], total:0});
+    const [cart, setCart] = useState({items:[], total:0, totalItems:0});
     const {authUser} = useUserContext();
     const addItemToCart = item => {
         const newCart = {...cart}
@@ -16,8 +16,6 @@ export default function CartContextProvider({children}) {
                 console.log(cartItem.id, item.id)
                 return cartItem.id === item.id && cartItem.size === item.size
             });
-            console.log(idx)
-            console.log(newCart.items[idx])
             newCart.items[idx].quantity++;
         }
         else {
@@ -26,7 +24,22 @@ export default function CartContextProvider({children}) {
         }
         newCart.total = updateCartTotal(newCart);
         newCart.totalItems = updateCartTotalItems(newCart);
-        console.log("newCart is: ",newCart);
+        setCart(newCart);
+        uploadCartToFireBase(newCart);
+    }
+    const changeQuantityOfItem = item => {
+        const newCart = {...cart};
+        const idx = newCart.items.findIndex(cartItem => {
+            return cartItem.id === item.id && cartItem.size === item.size
+        });
+        if (newCart.items[idx].quantity > 1) {
+            newCart.items[idx].quantity--;
+        }
+        else {
+            newCart.items = [...newCart.items.slice(0, idx),...newCart.items.slice(idx+1)]
+        }
+        newCart.total = updateCartTotal(newCart);
+        newCart.totalItems = updateCartTotalItems(newCart);
         setCart(newCart);
         uploadCartToFireBase(newCart);
     }
@@ -45,7 +58,6 @@ export default function CartContextProvider({children}) {
         const colRef = collection(db, "carts")
         const q = query(colRef, where("userId", "==", authUser.uid), limit(1));
         const oldCartId = await getDocs(q).then(data => data.docs[0].id).catch(() => {return null});
-        console.log(oldCartId);
         if (oldCartId) {
             const docRef = doc(db, "carts", oldCartId);
             const data = {cart: inputCart, userId: authUser.uid}
@@ -55,6 +67,19 @@ export default function CartContextProvider({children}) {
             addDoc(colRef, data).catch(error => console.log(error))
         }
     }   
+    const placeOrder = async() => {
+        const userid = authUser.uid;
+        const items = cart.items;
+        const total = cart.total;
+        const colRef = collection(db, "orders");
+        const date = new Date();
+        const data = {userid, items, total, date}
+        const orderId = await addDoc(colRef, data).then(res => res.id).catch(error => console.log(error))
+        const newCart = {items:[], total:0, totalItems:0}
+        setCart(newCart);
+        uploadCartToFireBase(newCart);
+        return orderId;
+    }
     const removeItemFromCart = (id, size) => {
         const newCart = {...cart};
         newCart.items = newCart.items.filter(item => {
@@ -65,13 +90,9 @@ export default function CartContextProvider({children}) {
         setCart(newCart);
         uploadCartToFireBase(newCart);
     }
-    const resetCart = () => {
-        const newResetCart = {items:[], total:0}
-        uploadCartToFireBase(newResetCart);
-    }
     const updateCartTotal = cart => {
         const total = cart.items.reduce((acc,curr) => {
-            const itemPrice = Math.round(Number(curr.price));
+            const itemPrice = Math.round(Number(curr.price.replace(',', '.')));
             return acc + (itemPrice * curr.quantity)
         },0)
         return total;
@@ -85,12 +106,14 @@ export default function CartContextProvider({children}) {
     useEffect(() => {
         if (authUser) {
             checkIfCartExistsAtFireBase()
-
+        }
+        else {
+            setCart({items:[], total:0});
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [authUser])
     return (
-        <CartContext.Provider value={{cart, setCart, addItemToCart, removeItemFromCart}}>
+        <CartContext.Provider value={{cart, setCart, addItemToCart, removeItemFromCart, changeQuantityOfItem, placeOrder}}>
             {children}
         </CartContext.Provider>
     )

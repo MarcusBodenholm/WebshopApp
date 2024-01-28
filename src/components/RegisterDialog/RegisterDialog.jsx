@@ -1,4 +1,4 @@
-import "./LoginDialog.css"
+import "./RegisterDialog.css"
 import {useState} from 'react';
 import Button from '@mui/material/Button';
 import {styled} from "@mui/material/styles"
@@ -10,7 +10,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Typography from "@mui/material/Typography";
 import { auth } from "../../config/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const LoginTextField = styled(TextField)({
     '& input:valid + fieldset': {
@@ -30,7 +30,7 @@ const LoginTextField = styled(TextField)({
 
 
 
-const LoginDialog = ({loginOpen, setLoginOpen}) => {
+const RegisterDialog = ({registerOpen, setRegisterOpen}) => {
     const [email, setEmail] = useState({error:false, errorText:"", email:""});
     const [password, setPassword] = useState({error:false, errorText:"", password:""})
     const [errorMessage, setErrorMessage] = useState("");
@@ -40,16 +40,17 @@ const LoginDialog = ({loginOpen, setLoginOpen}) => {
         setEmail({error:false, errorText:"", email:""})
         setErrorMessage("");
         setPassword({error:false, errorText:"", password:""})
-        setLoginOpen(false);
+        setRegisterOpen(false);
     }
-    const handleLogin = async() => {
+    const handleRegister = async() => {
         if (email.error === true || email.email.length === 0 || 
             password.error === true || password.password.length === 0) {
             setErrorMessage("Vänligen fyll i alla uppgifter först.")
             return;
         }
-        const result = await signInWithEmailAndPassword(auth, email.email, password.password)
+        const result = await createUserWithEmailAndPassword(auth, email.email, password.password)
                         .catch(() => false);
+        console.log(result);
         if (result === false) {
             setErrorMessage("Vänligen kontrollera epost och lösenord.")
         }
@@ -80,12 +81,12 @@ const LoginDialog = ({loginOpen, setLoginOpen}) => {
     }
     return (
         <Dialog
-            open={loginOpen}
+            open={registerOpen}
             onClose={handleClose}>
-            <DialogTitle variant='h4' textAlign="center" sx={{fontWeight:"bold"}}>Logga in</DialogTitle>
+            <DialogTitle variant='h4' textAlign="center" sx={{fontWeight:"bold"}}>Registrera</DialogTitle>
             <DialogContent sx={{display:"flex", flexDirection:"column", width:"350px"}}>
                 <DialogContentText>
-                För att kunna lägga till artiklar i din varukorg samt beställa behöver du logga in. 
+                Registrera idag för att kunna lägga beställningar på de bästa artiklarna på nätet! 
                 </DialogContentText>
                 <LoginTextField
                 autoFocus
@@ -94,8 +95,8 @@ const LoginDialog = ({loginOpen, setLoginOpen}) => {
                 error={email.error}
                 
                 margin="dense"
-                id="login-email"
-                name="login-email"
+                id="register-email"
+                name="register-email"
                 label="Epostadress"
                 type="email"
                 helperText={email.errorText}
@@ -108,8 +109,8 @@ const LoginDialog = ({loginOpen, setLoginOpen}) => {
                 error={password.error}
                 helperText={password.errorText}
                 margin="dense"
-                id="login-password"
-                name="login-password"
+                id="register-password"
+                name="register-password"
                 label="Lösenord"
                 type="password"
                 variant="standard"
@@ -118,9 +119,9 @@ const LoginDialog = ({loginOpen, setLoginOpen}) => {
             </DialogContent>
             <DialogActions sx={{justifyContent:"center", gap:"15px", marginBottom:"10px"}}>
                 <Button onClick={handleClose} variant="contained" className='button-on-login-form'>Avbryt</Button>
-                <Button onClick={handleLogin} variant="contained" className='button-on-login-form'>Logga in</Button>
+                <Button onClick={handleRegister} variant="contained" className='button-on-login-form'>Registrera</Button>
             </DialogActions>
         </Dialog>
       )
 }
-export default LoginDialog
+export default RegisterDialog
