@@ -18,7 +18,7 @@ const Homepage = () => {
                 </Stack>
             </Stack>
             <Typography textAlign="center" sx={{color: "rgb(112, 0, 22)", fontStyle:"italic", fontSize:"18px", marginTop:"80px"}} variant="subtitle1">Detta är ett studentprojekt gjort som del av kursen Frontend 2 på Nackademins Programutvecklare .Net program.</Typography>
-            <Typography textAlign="center" sx={{color: "rgb(112, 0, 22)", fontStyle:"italic", fontSize:"18px"}} variant="subtitle1">All data på den här sidan kommer från och ägs av <a href="https://www.miinto.se/">Miinto.com</a>.</Typography>
+            <Typography textAlign="center" sx={{color: "rgb(112, 0, 22)", fontStyle:"italic", fontSize:"18px", marginBottom:"20px"}} variant="subtitle1">All data på den här sidan kommer från och ägs av <a href="https://www.miinto.se/">Miinto.com</a>.</Typography>
         </Container>
     )
 }

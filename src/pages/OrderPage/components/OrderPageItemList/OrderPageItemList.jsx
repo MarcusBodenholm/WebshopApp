@@ -18,7 +18,7 @@ const OrderPageItemList = () => {
             {/* <Typography sx={{paddingBottom:"10px", fontWeight:"bold", fontSize:"1.5rem"}} textAlign="center" variant="subtitle1">Dina varor</Typography> */}
             <Divider />
             <Stack sx={{height:"450px",  marginTop:"20px"}}>
-                <Stack direction="column" spacing={1} sx={{height: "100%", width: "100%", alignItems:"center", overflow:"scroll", scrollbarWidth:"none"}}>
+                <Stack direction="column" spacing={1} sx={{height: "100%", width: "100%", alignItems:"center", overflowY:"scroll", scrollbarWidth:"none"}}>
                     {cart.items.map((item,idx) => {
                         return <OrderPageItem item={item} key={item.title + item.price +idx} />
                     })}
