@@ -5,10 +5,10 @@ import useDataContext from "../../../../contexts/useDataContext";
 
 const StoreHeader = ({department, category}) => {
     const {data} = useDataContext();
-    if (department === "herr") {
+    if (department === "herr" && data.length !== 0) {
         return <HerrHeader amount={data.length} category={category}/>
     }
-    if (department === "dam") {
+    if (department === "dam" && data.length !== 0) {
         return <DamHeader amount={data.length} category={category}/>
     }
     return (

@@ -5,6 +5,7 @@ import CartContextProvider from './contexts/cartContext';
 import DataContextProvider from './contexts/dataContext';
 import UserContextProvider from './contexts/userContext';
 import Router from './pages/Router';
+import "./App.css";
 
 function App() {
   const theme =  LightTheme

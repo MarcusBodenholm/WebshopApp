@@ -6,7 +6,7 @@ import { useSearchParams, useLocation } from "react-router-dom"
 import useDataContext from "../../../../contexts/useDataContext";
 import {SquareLoader} from "react-spinners";
 
-const ProductList = () => {
+const ProductList = ({mobile}) => {
     const {data, setData, products} = useDataContext();
     const [loading, setLoading] = useState(true);
     const [searchParams,] = useSearchParams();
@@ -110,9 +110,9 @@ const ProductList = () => {
                         </FormControl>
                     </Stack>
                     <Divider sx={{marginTop:"10px"}}/>
-                    <Grid container spacing={2} sx={{marginTop:"2px", justifyContent:"space-around"}}>
+                    <Grid container spacing={mobile ? 0 : 2} sx={mobile ? {gap:"40px"} : {marginTop:"2px", justifyContent:"space-around"}}>
                         {data.map((product, idx) => {
-                            return <ProductsListCard product={product} key={idx} department={department}/>
+                            return <ProductsListCard product={product} key={idx} department={department} mobile={mobile}/>
                         })}
                     </Grid>
 

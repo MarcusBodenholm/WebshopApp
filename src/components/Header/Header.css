@@ -21,6 +21,29 @@
     padding-top: 5px;
     z-index: 3;
 }
+.supreme-cart-container-mobile {
+    max-width: 300px;
+    min-width: 300px;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid rgb(112, 0, 22);
+    border-left: 2px solid rgb(112, 0, 22);
+    border-right: 2px solid rgb(112, 0, 22);
+    padding-right: 5px;
+    padding-top: 3px;
+    background-color: white;
+    z-index: 3;
+}
+
+.supreme-cart-container-inactive-mobile {
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    padding-right: 5px;
+    padding-top: 5px;
+    z-index: 3;
+
+}
 .popper-container {
     width: 300px;
     max-height: 500px;

@@ -1,4 +1,4 @@
-import {Typography, Container, Stack} from "@mui/material"
+import {Typography, Container, Stack, useTheme, useMediaQuery} from "@mui/material"
 import BreadcrumbsNavigation from "../../components/BreadcrumbsNavigation/BreadcrumbsNavigation"
 import ProductList from "./components/ProductList/ProductList"
 import { useSearchParams, useLocation } from "react-router-dom"
@@ -20,11 +20,14 @@ const Store = () => {
     const department = getDepartment();
     const category = searchParams.get("category");
     const query = searchParams.get("query");
+    const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down('sm'))
+
     return (
-        <Container sx={{marginTop:"10px"}}>
+        <Container sx={mobile ? {width:"100%", marginLeft:"-10px"} : {marginTop:"10px"}}>
             <BreadcrumbsNavigation />
             <Stack direction="row">
-                <CategorySideBar department={department}/>
+                {mobile ? <></> : <CategorySideBar department={department}/>}
                 <Stack direction="column" sx={{marginLeft:"10px", width:"100%"}}>
                     {query ? 
                     <Stack sx={{marginBottom:"15px"}}>
@@ -32,7 +35,7 @@ const Store = () => {
                     </Stack>    
                     : <StoreHeader department={department} category={category} />
                     }
-                    <ProductList />
+                    <ProductList mobile={mobile}/>
                 </Stack>
             </Stack>
         </Container>
