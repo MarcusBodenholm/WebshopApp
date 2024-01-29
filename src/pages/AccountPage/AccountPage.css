@@ -1,0 +1,12 @@
+
+.MuiStack-root .cancel-order-button {
+    margin-top: 10px;
+    background-color: rgb(112, 0, 22);
+    color: white;
+}
+
+.MuiStack-root .cancel-order-button:hover {
+    background-color: rgb(100, 2, 22);
+    color: white;
+    transform: scale(1.005);
+}

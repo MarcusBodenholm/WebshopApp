@@ -1,13 +1,13 @@
 import "./ProductList.css";
 import {useEffect, useState} from "react"
-import { products } from "../../../../DummyData";
 import ProductsListCard from "../../ProductListCard/ProductsListCard";
 import {Grid, Stack, FormControl, Select, InputLabel, MenuItem, Divider} from "@mui/material"
 import { useSearchParams, useLocation } from "react-router-dom"
 import useDataContext from "../../../../contexts/useDataContext";
+import {SquareLoader} from "react-spinners";
 
 const ProductList = () => {
-    const {data, setData} = useDataContext();
+    const {data, setData, products} = useDataContext();
     const [loading, setLoading] = useState(true);
     const [searchParams,] = useSearchParams();
     const [sortByState, setSortByState] = useState("");
@@ -23,7 +23,6 @@ const ProductList = () => {
     }
     const department = getDepartment();
     const handleSortChange = event => {
-        console.log(event.target.value)
         setSortByState(event.target.value);
         sortData(event.target.value);
     }
@@ -48,7 +47,6 @@ const ProductList = () => {
             newData.sort((a, b) => a.brand.localeCompare(b.brand));
         }
 
-        console.log(newData);
         setData(newData);
         
     }
@@ -94,11 +92,11 @@ const ProductList = () => {
         const filteredProducts = filterProducts(fetchedData);
         setData(filteredProducts);
         setLoading(false);
-    },[query, location])
+    },[query, location, products])
     
     return (
         <>
-            {loading ? <h1>Loading...</h1> : 
+            {loading ? <Stack sx={{width:"100%", height:"500px", justifyContent:"center", alignItems:"center"}}><SquareLoader color="#700016" size={300}/></Stack> : 
                 <Stack>
                     <Stack sx={{marginBottom:"5px"}}>
                         <FormControl  className="product-list-sort-container">

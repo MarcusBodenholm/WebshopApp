@@ -25,7 +25,7 @@ const Store = () => {
             <BreadcrumbsNavigation />
             <Stack direction="row">
                 <CategorySideBar department={department}/>
-                <Stack direction="column" sx={{marginLeft:"10px"}}>
+                <Stack direction="column" sx={{marginLeft:"10px", width:"100%"}}>
                     {query ? 
                     <Stack sx={{marginBottom:"15px"}}>
                         <Typography variant="h5">Sökresultat för {query}: {data.length} träffar</Typography>

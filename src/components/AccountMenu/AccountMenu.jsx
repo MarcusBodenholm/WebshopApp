@@ -1,11 +1,12 @@
 import "./AccountMenu.css";
 import { useState, useRef, useEffect } from "react";
-import {Typography, Stack, Popper, Paper, Grow, ClickAwayListener, MenuList, MenuItem, Link} from "@mui/material";
+import {Typography, Stack, Popper, Paper, Grow, ClickAwayListener, MenuList, MenuItem} from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { auth } from "../../config/firebase";
 import useUserContext from "../../contexts/useUserContext";
 import LoginDialog from "../LoginDialog/LoginDialog";
 import RegisterDialog from "../RegisterDialog/RegisterDialog";
+import {useNavigate} from "react-router-dom"
 const AccountMenu = () => {
     const [open, setOpen] = useState(false);
     const [loginOpen, setLoginOpen] = useState(false);
@@ -13,7 +14,7 @@ const AccountMenu = () => {
 
     const {authUser} = useUserContext(); 
     const anchorRef = useRef(null);
-
+    const navigate = useNavigate();
     const handleToggle = () => {
         if (loginOpen === false) {
             setOpen((prevOpen) => !prevOpen);
@@ -49,7 +50,10 @@ const AccountMenu = () => {
         setOpen(false);
         setRegisterOpen(true);
     }
-
+    const handleAccountClick = () => {
+        setOpen(false);
+        navigate("account")
+    }
     useEffect(() => {
         if (prevOpen.current === true && open === false) {
             anchorRef.current.focus();
@@ -93,7 +97,7 @@ const AccountMenu = () => {
                                 <MenuItem onClick={handleRegisterClick} key={"Registrera"}>Registrera</MenuItem>]
                             
                             : [
-                                <MenuItem onClick={handleClose} key={"myaccount"}>Mitt konto</MenuItem>,
+                                <MenuItem onClick={handleAccountClick} key={"myaccount"}>Mitt konto</MenuItem>,
                                 <MenuItem onClick={handleLogoutClick} key={"logout"}>Logga ut</MenuItem>
                             
                             ]}

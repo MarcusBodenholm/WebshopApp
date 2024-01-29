@@ -3,6 +3,7 @@ import OrderPage from "./OrderPage/OrderPage";
 import Product from "./Product/Product";
 import Store from "./Store/Store";
 import Success from "./Success/Success";
+import AccountPage from "./AccountPage/AccountPage";
 const pagesData = [
     {
         path: "",
@@ -53,6 +54,11 @@ const pagesData = [
         path:"success",
         element:<Success />,
         title:"Framgång!"
+    },
+    {
+        path:"account",
+        element:<AccountPage />,
+        title:"Profil!"
     }
 ]
 

@@ -5,7 +5,7 @@ import {ShoppingCartSharp} from "@mui/icons-material";
 import { useRef, useState } from "react";
 import CartPopperItem from "../CartPopperItem/CartPopperItem";
 import useCartContext from "../../contexts/useCartContext";
-import TopStyleLogo from "../../assets/topstyle.png"
+import TopStyleLogo2 from "../../assets/topstylemk2.png"
 import SearchBar from "../SearchBar/SearchBar";
 import AccountMenu from "../AccountMenu/AccountMenu";
 
@@ -34,7 +34,7 @@ const Header = () => {
                     <Stack direction="row" sx={{justifyContent: "space-between", alignItems:"center", flexDirection: "row", gap:"10px", width:"100%", marginBottom:"10px"}}>
                         <SearchBar />
                         <div style={{display:"flex", flexGrow:"1", justifyContent:"center"}}>
-                            <Link component={NavLink} to="/"><img src={TopStyleLogo} style={{width: "200px"}}/></Link>
+                            <Link component={NavLink} to="/"><img src={TopStyleLogo2} style={{width: "200px", height:"65px"}}/></Link>
                         </div>
                         
                         {/* <Typography textAlign="center" variant="h2" sx={{flexGrow:"1", paddingLeft:"50px"}}>Top Style</Typography> */}

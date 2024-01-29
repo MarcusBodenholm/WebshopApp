@@ -15,9 +15,10 @@ const Homepage = () => {
                     <Typography>Vårt utbud av skor är noggrant utvalt för att erbjuda komfort, stil och hållbarhet. Från trendiga sneakers till eleganta klackar, Top Style har skor som passar alla stilar och tillfällen. Glöm inte att kolla in vårt sortiment av accessoarer för att komplettera din look och lägga till den där sista touchen.</Typography>
                     <Typography>Vi strävar efter att erbjuda en sömlös och tillfredsställande shoppingupplevelse. Med säkra betalningsalternativ och snabb leverans kan du vara säker på att din Top Style-upplevelse är bekväm och pålitlig.</Typography>
                     <Typography>Gör dig redo att omfamna din inre fashionista och upptäck det bästa inom kläder, skor och accessoarer hos Top Style. Välkommen till en värld av stil, trendsättning och självuttryck - Välkommen till Top Style!</Typography>
-
                 </Stack>
             </Stack>
+            <Typography textAlign="center" sx={{color: "rgb(112, 0, 22)", fontStyle:"italic", fontSize:"18px", marginTop:"80px"}} variant="subtitle1">Detta är ett studentprojekt gjort som del av kursen Frontend 2 på Nackademins Programutvecklare .Net program.</Typography>
+            <Typography textAlign="center" sx={{color: "rgb(112, 0, 22)", fontStyle:"italic", fontSize:"18px"}} variant="subtitle1">All data på den här sidan kommer från och ägs av <a href="https://www.miinto.se/">Miinto.com</a>.</Typography>
         </Container>
     )
 }
