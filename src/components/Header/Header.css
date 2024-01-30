@@ -20,6 +20,7 @@
     padding-right: 5px;
     padding-top: 5px;
     z-index: 3;
+    
 }
 .supreme-cart-container-mobile {
     max-width: 300px;
@@ -33,7 +34,11 @@
     padding-top: 3px;
     background-color: white;
     z-index: 3;
+    text-decoration: none;
 }
+.supreme-cart-container-mobile:hover {
+    color: rgb(112, 0, 22)
+} 
 
 .supreme-cart-container-inactive-mobile {
     width:100%;
@@ -42,6 +47,8 @@
     padding-right: 5px;
     padding-top: 5px;
     z-index: 3;
+    text-decoration: none;
+
 
 }
 .popper-container {

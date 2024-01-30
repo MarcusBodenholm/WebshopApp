@@ -49,18 +49,13 @@ const Header = () => {
                     </Stack>
                 </Stack>
                 <Stack direction="column" sx={{justifyContent:"space-between"}}>
-                    <Stack sx={{marginBottom:"10px"}} onMouseEnter={handleHover} onMouseLeave={handleHover} ref={popperRef} className={open ? "supreme-cart-container-mobile" : "supreme-cart-container-inactive-mobile"} direction="column">
-                        <Stack direction="row" spacing={2} className={open ? "cart-container cart-container" : "cart-container-inactive"}>
+                    <Stack component={NavLink} to="/checkout" sx={{marginBottom:"10px"}}  ref={popperRef} className={open ? "supreme-cart-container-mobile-inactive" : "supreme-cart-container-inactive-mobile"} direction="column">
+                        <Stack direction="row" spacing={1} className={open ? "cart-container cart-container" : "cart-container-inactive"}>
                             <Badge badgeContent={cart.totalItems} color="info">
-                                <ShoppingCartSharp color={open ? "info" : "black"} />
+                                <ShoppingCartSharp color={open ? "info" : "info"} />
                             </Badge>
-                            <Typography>Varukorg</Typography>
+                            <Typography sx={{color: "rgb(112, 0, 22)", textDecoration:"none"}}>Varukorg</Typography>
                         </Stack>
-                        <Popper id={id} open={open} anchorEl={anchorEl} position="bottom-end">
-                            <Paper className="popper-container" elevation={12}>
-                                <CartPopperItem />
-                            </Paper>
-                        </Popper>
                     </Stack>
 
                 </Stack>
