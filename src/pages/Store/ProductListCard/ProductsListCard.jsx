@@ -3,7 +3,7 @@ import priceFormat from "../../../helpers/priceFormat";
 import {Grid, Typography, Card, Link, Stack} from "@mui/material";
 import {NavLink} from "react-router-dom"
 
-const ProductsListCard = ({product, department}) => {
+const ProductsListCard = ({product, department, mobile}) => {
   const generateURL = () => {
     let base = "/store";
     if (department) {
@@ -18,9 +18,9 @@ const ProductsListCard = ({product, department}) => {
   }
   const imageUrl = product.images[0].split('?')[0] + "?width=268&height=402";
   return (
-    <Grid item>
+    <Grid item xs={5} md={3}>
         <Link underline="none" component={NavLink} to={generateURL()}>
-          <Card sx={{width:"200px", height:"330px", padding:"10px", display:"flex"}} className="product-card-container">
+          <Card sx={mobile ? {width:"160px", height:"330px"} : {width:"200px", height:"330px", padding:"10px", display:"flex"}} className="product-card-container">
             <Stack direction="column" sx={{width:"100%"}}>
               <img src={imageUrl} className="product-card-image" />
               <Stack direction="column" sx={{height:"100%"}}>

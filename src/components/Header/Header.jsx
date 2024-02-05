@@ -1,5 +1,5 @@
 import "./header.css"
-import {Stack, Typography, AppBar, Toolbar, Link, Popper, Paper, Badge, Box} from "@mui/material";
+import {Stack, Typography, AppBar, Toolbar, Link, Popper, Paper, Badge, Box, useTheme, useMediaQuery} from "@mui/material";
 import { NavLink, useLocation } from "react-router-dom";
 import {ShoppingCartSharp} from "@mui/icons-material";
 import { useRef, useState } from "react";
@@ -8,6 +8,7 @@ import useCartContext from "../../contexts/useCartContext";
 import TopStyleLogo2 from "../../assets/topstylemk2.png"
 import SearchBar from "../SearchBar/SearchBar";
 import AccountMenu from "../AccountMenu/AccountMenu";
+
 
 const Header = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -27,8 +28,44 @@ const Header = () => {
     const department = getDepartment();
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
+    const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down('sm'))
+
     return (
+        
         <AppBar position="relative" sx={{width:"100%"}}>
+            {mobile ? 
+            <Stack direction="column" spacing={1}>
+                <Stack direction="row">
+                    <div style={{display:"flex", flexGrow:"1", justifyContent:"center"}}>
+                        <Link component={NavLink} to="/store"><img src={TopStyleLogo2} style={{width: "200px", height:"65px"}}/></Link>
+                        
+                    </div>
+                </Stack>
+                <Stack direction="row" sx={{justifyContent:"space-around"}}>
+                    <SearchBar mobile={mobile}/>
+                    <Stack sx={{alignItems:"flex-start", paddingTop:"10px"}}>
+                        <AccountMenu />
+                    </Stack>
+                </Stack>
+                <Stack direction="column" sx={{justifyContent:"space-between"}}>
+                    <Stack component={NavLink} to="/checkout" sx={{marginBottom:"10px"}}  ref={popperRef} className={open ? "supreme-cart-container-mobile-inactive" : "supreme-cart-container-inactive-mobile"} direction="column">
+                        <Stack direction="row" spacing={1} className={open ? "cart-container cart-container" : "cart-container-inactive"}>
+                            <Badge badgeContent={cart.totalItems} color="info">
+                                <ShoppingCartSharp color={open ? "info" : "info"} />
+                            </Badge>
+                            <Typography sx={{color: "rgb(112, 0, 22)", textDecoration:"none"}}>Varukorg</Typography>
+                        </Stack>
+                    </Stack>
+
+                </Stack>
+            </Stack>
+            
+            
+            
+            
+            :
+            
             <Toolbar sx={{justifyContent: "space-between", justifySelf:"flex-start", alignSelf:"flex-start", flexDirection: "row", gap:"10px", width:"100%", marginBottom:"5px"}}>
                 <Stack direction="column" sx={{width:"100%"}}>
                     <Stack direction="row" sx={{justifyContent: "space-between", alignItems:"center", flexDirection: "row", gap:"10px", width:"100%", marginBottom:"10px"}}>
@@ -55,7 +92,7 @@ const Header = () => {
                     <Stack direction="row" sx={{justifyContent:"space-between"}} spacing={3}>
                         <div style={{width: "240px"}}></div>
                         <Stack direction="row"  sx={{justifyContent:"center", flexGrow:"1"}}>
-                            <Stack direction="row" spacing={1} sx={{width:"200px", marginLeft:"75px", justifyContent:"space-around"}}>
+                            <Stack direction="row" spacing={5} sx={{width:"200px", marginLeft:"75px", justifyContent:"space-around"}}>
                                 <Link underline="none" component={NavLink} to="/store/dam">
                                     <Box className="header-department-label-container">
                                         <Typography className={department === "dam" ? "header-department-label-active" : "header-department-label" } variant="body1">DAM</Typography>
@@ -76,6 +113,7 @@ const Header = () => {
                     </Stack>
                 </Stack>
             </Toolbar>
+            }
         </AppBar>
     )
 }

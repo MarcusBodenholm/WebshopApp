@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom"
-import {Container, Stack} from "@mui/material"
+import {Container, Stack, useTheme, useMediaQuery} from "@mui/material"
 import BreadcrumbsNavigation from "../../components/BreadcrumbsNavigation/BreadcrumbsNavigation";
 import ProductHeader from "./components/ProductHeader/ProductHeader";
 import ProductImageGallery from "./components/ProductImageGallery/ProductImageGallery";
@@ -14,6 +14,8 @@ const Product = () => {
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState({});
     const [searchParams,] = useSearchParams();
+    const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down('sm'))
 
     useEffect(() => {
         const productId = searchParams.get("product");
@@ -30,6 +32,14 @@ const Product = () => {
         <Container>
             <BreadcrumbsNavigation />
             {loading ? <Stack sx={{width:"100%", height:"500px", justifyContent:"center", alignItems:"center"}}><SquareLoader color="#700016" size={300}/></Stack> : 
+            mobile ? 
+            <Stack direction="column" spacing={2}>
+                <ProductHeader brand={product.brand} title={product.title}/>
+                <ProductImageGallery images={product.images} mobile={mobile}/>
+                <ProductDetails productInfo={product} />
+            </Stack>
+
+            :
             <Stack direction="row" spacing={4}>
                 <ProductImageGallery images={product.images}/>
                 <Stack direction="column" spacing={2}>

@@ -15,15 +15,27 @@ const ProductImageGallery = props => {
         const className = key === activeImage ? "selected-preview-image" : "preview-product-image"
         return <img src={img} key={key} data-key={key} className={className} onClick={switchMainImage} />
     })
-    const mainImage = <img src={images[activeImage].split("?")[0] + "?width=693&height=842"} key={activeImage} className='main-product-image'/>
+    const mainImage = <img src={images[activeImage].split("?")[0] + "?width=693&height=842"} key={activeImage} className={props.mobile ? "main-product-image-mobile" : 'main-product-image'}/>
 
     return (
+        <>
+        {props.mobile ? 
+        <Stack direction="column" className='product-image-gallery-container'>
+            {mainImage}
+            <Stack direction="row">
+                {imageElements}
+            </Stack>
+        </Stack>
+
+        :
         <Stack direction="row" className='product-image-gallery-container'>
             <Stack direction="column">
                 {imageElements}
             </Stack>
             {mainImage}
         </Stack>
+        } 
+    </>
     )
 }
 

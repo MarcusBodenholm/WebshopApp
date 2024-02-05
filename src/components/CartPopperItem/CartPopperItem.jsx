@@ -18,7 +18,7 @@ const CartPopperItem = () => {
         <>
             <Divider/>
             <Stack direction="column" sx={{width:"100%", maxHeight:"480px", justifyContent:"space-between", marginTop:"5px"}}>
-                <Stack direction="column"className="cart-item-scrollable-list" spacing={1} sx={{overflow:"scroll", scrollbarWidth:"none"}}>
+                <Stack direction="column"className="cart-item-scrollable-list" spacing={1} sx={{overflowY:"scroll", overflowX:"hidden", scrollbarWidth:"thin"}}>
                     
                     <Stack sx={{height: "100%", width: "100%"}}>
                         {cart.items.length === 0 ? 
