@@ -37,26 +37,27 @@ const Header = () => {
             {mobile ? 
             <Stack direction="column" spacing={1}>
                 <Stack direction="row">
-                    <div style={{display:"flex", flexGrow:"1", justifyContent:"center"}}>
-                        <Link component={NavLink} to="/store"><img src={TopStyleLogo2} style={{width: "200px", height:"65px"}}/></Link>
-                        
-                    </div>
-                </Stack>
-                <Stack direction="row" sx={{justifyContent:"space-around"}}>
-                    <SearchBar mobile={mobile}/>
-                    <Stack sx={{alignItems:"flex-start", paddingTop:"10px"}}>
-                        <AccountMenu />
-                    </Stack>
-                </Stack>
-                <Stack direction="column" sx={{justifyContent:"space-between"}}>
-                    <Stack component={NavLink} to="/checkout" sx={{marginBottom:"10px"}}  ref={popperRef} className={open ? "supreme-cart-container-mobile-inactive" : "supreme-cart-container-inactive-mobile"} direction="column">
+                <Stack component={NavLink} to="/checkout" sx={{marginBottom:"10px"}}  ref={popperRef} className={open ? "supreme-cart-container-mobile-inactive" : "supreme-cart-container-inactive-mobile"} direction="column">
                         <Stack direction="row" spacing={1} className={open ? "cart-container cart-container" : "cart-container-inactive"}>
                             <Badge badgeContent={cart.totalItems} color="info">
                                 <ShoppingCartSharp color={open ? "info" : "info"} />
                             </Badge>
-                            <Typography sx={{color: "rgb(112, 0, 22)", textDecoration:"none"}}>Varukorg</Typography>
+                            <Typography sx={{color: "rgb(112, 0, 22)", textDecoration:"none"}}></Typography>
                         </Stack>
                     </Stack>
+
+                    <div style={{display:"flex", flexGrow:"1", justifyContent:"center"}}>
+                        <Link component={NavLink} to="/store"><img src={TopStyleLogo2} style={{width: "200px", height:"65px"}}/></Link>
+                        
+                    </div>
+                    <AccountMenu mobile={mobile} />
+                </Stack>
+                <Stack direction="row" sx={{justifyContent:"space-around"}}>
+                    <SearchBar mobile={mobile}/>
+                    <Stack sx={{alignItems:"flex-start", paddingTop:"10px"}}>
+                    </Stack>
+                </Stack>
+                <Stack direction="column" sx={{justifyContent:"space-between"}}>
 
                 </Stack>
             </Stack>
