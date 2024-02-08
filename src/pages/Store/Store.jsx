@@ -4,7 +4,7 @@ import ProductList from "./components/ProductList/ProductList"
 import { useSearchParams, useLocation } from "react-router-dom"
 import StoreHeader from "./components/StoreHeader/StoreHeader"
 import useDataContext from "../../contexts/useDataContext"
-import CategorySideBar from "./components/CategorySidebar/CategorySideBar"
+import CategorySideBar from "./components/CategorySidebar/CategorySidebar"
 
 const Store = () => {
     const [searchParams,] = useSearchParams();

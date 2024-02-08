@@ -40,7 +40,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     [theme.breakpoints.down('sm')]: {
-      width:'11ch',
+      width:'100%',
       '&:focus': {
         borderRadius: '5px',
         
@@ -73,7 +73,7 @@ const SearchBar = ({mobile}) => {
         navigate(baseURL + encodedSearch);
     }
     return (
-        <Stack direction="row" spacing={2} sx={mobile ? {width: "50%"} : {width:"300px"}}>
+        <Stack direction="row" spacing={2} sx={mobile ? {width: "80%", justifySelf:"center", marginBottom:"5px"} : {width:"300px"}}>
             <Search>
                 <SearchIconWrapper>
                     <SearchIcon />
