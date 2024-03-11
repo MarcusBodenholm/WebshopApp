@@ -3,8 +3,8 @@ import {styled, alpha} from "@mui/material/styles"
 import { Button, InputBase, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search"
 import { useRef } from "react";
-import {useNavigate} from "react-router-dom"
-
+import {useNavigate} from "react-router-dom";
+import useMobileContext from "../../contexts/useMobileContext.js";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -40,7 +40,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     [theme.breakpoints.down('sm')]: {
-      width:'11ch',
+      width:'100%',
       '&:focus': {
         borderRadius: '5px',
         
@@ -67,13 +67,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const SearchBar = ({mobile}) => {
     const searchRef = useRef();
     const navigate = useNavigate();
+    const {mobileOpen,setMobileOpen} = useMobileContext();
     const handleSearchClick = () => {
+        if (mobileOpen) {
+          setMobileOpen(false);
+        }
         const baseURL = "/store?query=";
         const encodedSearch = encodeURI(searchRef.current.value);
         navigate(baseURL + encodedSearch);
     }
     return (
-        <Stack direction="row" spacing={2} sx={mobile ? {width: "50%"} : {width:"300px"}}>
+        <Stack direction="row" spacing={2} sx={mobile ? {width: "80%", justifySelf:"center", marginBottom:"5px"} : {width:"300px"}}>
             <Search>
                 <SearchIconWrapper>
                     <SearchIcon />

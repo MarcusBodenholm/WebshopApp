@@ -1,5 +1,5 @@
 
-import {Breadcrumbs, Typography, Link} from "@mui/material";
+import {Breadcrumbs, Typography, Link, useTheme, useMediaQuery} from "@mui/material";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -12,8 +12,10 @@ const BreadcrumbsNavigation = () => {
     const location= useLocation();
     const crumbs = ["start", ...location.pathname.split("/").slice(1)]
     const name = searchParams.get("title");
+    const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down('sm'))
     return (
-        <div role="presentation" style={{marginBottom:"10px"}}>
+        <div role="presentation" style={{marginBottom:"10px", marginLeft:(mobile ? "10px" : "")}}>
             <Breadcrumbs aria-label="breadcrumb">
                 {crumbs.map((crumb, idx) => {
                     let href = "";

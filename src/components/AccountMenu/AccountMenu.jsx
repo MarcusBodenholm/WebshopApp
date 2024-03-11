@@ -7,51 +7,45 @@ import useUserContext from "../../contexts/useUserContext";
 import LoginDialog from "../LoginDialog/LoginDialog";
 import RegisterDialog from "../RegisterDialog/RegisterDialog";
 import {useNavigate} from "react-router-dom"
-const AccountMenu = () => {
-    const [open, setOpen] = useState(false);
+const AccountMenu = ({mobile}) => {
     const [loginOpen, setLoginOpen] = useState(false);
     const [registerOpen, setRegisterOpen] = useState(false);
-
+    const [anchorEl, setAnchorEl] = useState(null)
     const {authUser} = useUserContext(); 
     const anchorRef = useRef(null);
     const navigate = useNavigate();
-    const handleToggle = () => {
-        if (loginOpen === false) {
-            setOpen((prevOpen) => !prevOpen);
-        }
+    const handleToggle = (event) => {
+        setAnchorEl(anchorEl ? null : event.currentTarget);
         
     };
   
-    const handleClose = (event) => {
-        if (anchorRef.current && anchorRef.current.contains(event.target)) {
-            return;
-        }
-    
-        setOpen(false);
+    const handleClose = () => {
+        setAnchorEl(null);
     };
     function handleListKeyDown(event) {
         if (event.key === 'Tab') {
             event.preventDefault();
-            setOpen(false);
+            setAnchorEl(null)
         } else if (event.key === 'Escape') {
-            setOpen(false);
+            setAnchorEl(null)
         }
     }    
+    const open = Boolean(anchorEl);
     const prevOpen = useRef(open);
     const handleLogoutClick= () => {
-        setOpen(false);
+        setAnchorEl(null)
         auth.signOut();
     }
     const handleLoginClick = () => {
-        setOpen(false);
+        setAnchorEl(null)
         setLoginOpen(true);
     }
     const handleRegisterClick = () => {
-        setOpen(false);
+        setAnchorEl(null)
         setRegisterOpen(true);
     }
     const handleAccountClick = () => {
-        setOpen(false);
+        setAnchorEl(null)
         navigate("account")
     }
     useEffect(() => {
@@ -67,11 +61,11 @@ const AccountMenu = () => {
         ref={anchorRef} id="account-menu-container" aria-controls={open ? 'account-menu' : undefined} aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true" onClick={handleToggle}
         >
-            <Typography>Profil</Typography>
+            <Typography>{mobile ? "" : "Profil"}</Typography>
             <AccountCircleIcon color={authUser ? "info" : "black"}/>
             <Popper
             open={open}
-            anchorEl={anchorRef.current}
+            anchorEl={anchorEl}
             role={undefined}
             placement="bottom-end"
             transition

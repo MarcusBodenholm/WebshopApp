@@ -96,3 +96,13 @@
     background-color: rgb(100, 0, 22);
 
 }
+
+.MuiStack-root .opensidebaricon {
+    width: 50px;
+    height: 50px;
+    justify-self: center;
+}
+
+.MuiStack-root .opensidebaricon:hover {
+    transform: scale(1.05);
+}

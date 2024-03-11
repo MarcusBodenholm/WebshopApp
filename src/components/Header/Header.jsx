@@ -8,11 +8,14 @@ import useCartContext from "../../contexts/useCartContext";
 import TopStyleLogo2 from "../../assets/topstylemk2.png"
 import SearchBar from "../SearchBar/SearchBar";
 import AccountMenu from "../AccountMenu/AccountMenu";
-
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import useMobileContext from "../../contexts/useMobileContext";
 
 const Header = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const {cart} = useCartContext();
+    const {mobileOpen, setMobileOpen} = useMobileContext();
     const popperRef = useRef();
     const handleHover = (event) => {
         setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -25,6 +28,9 @@ const Header = () => {
         }
         return null;
     }
+    const toggleMobileSideBar = () => {
+        setMobileOpen(!mobileOpen)
+    }
     const department = getDepartment();
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
@@ -35,34 +41,31 @@ const Header = () => {
         
         <AppBar position="relative" sx={{width:"100%"}}>
             {mobile ? 
-            <Stack direction="column" spacing={1}>
+            <Stack direction="column">
                 <Stack direction="row">
-                    <div style={{display:"flex", flexGrow:"1", justifyContent:"center"}}>
-                        <Link component={NavLink} to="/store"><img src={TopStyleLogo2} style={{width: "200px", height:"65px"}}/></Link>
-                        
-                    </div>
-                </Stack>
-                <Stack direction="row" sx={{justifyContent:"space-around"}}>
-                    <SearchBar mobile={mobile}/>
-                    <Stack sx={{alignItems:"flex-start", paddingTop:"10px"}}>
-                        <AccountMenu />
+                    <Stack onClick={toggleMobileSideBar} sx={{justifyContent:"center", alignItems:"center", marginLeft:"10px"}}>
+                        { mobileOpen ? <CloseIcon  className="opensidebaricon" /> : <MenuIcon  className="opensidebaricon"/>}
                     </Stack>
-                </Stack>
-                <Stack direction="column" sx={{justifyContent:"space-between"}}>
+                        
+                    <div style={{display:"flex", justifyContent:"center", paddingLeft:"25px"}}>
+                        <Link component={NavLink} to="/store"><img src={TopStyleLogo2} style={{width: "200px", height:"65px"}}/></Link>
+                    </div>
                     <Stack component={NavLink} to="/checkout" sx={{marginBottom:"10px"}}  ref={popperRef} className={open ? "supreme-cart-container-mobile-inactive" : "supreme-cart-container-inactive-mobile"} direction="column">
                         <Stack direction="row" spacing={1} className={open ? "cart-container cart-container" : "cart-container-inactive"}>
                             <Badge badgeContent={cart.totalItems} color="info">
                                 <ShoppingCartSharp color={open ? "info" : "info"} />
                             </Badge>
-                            <Typography sx={{color: "rgb(112, 0, 22)", textDecoration:"none"}}>Varukorg</Typography>
+                            <Typography sx={{color: "rgb(112, 0, 22)", textDecoration:"none"}}></Typography>
                         </Stack>
                     </Stack>
 
+                    {/* <AccountMenu mobile={mobile} /> */}
+                    
+                </Stack>
+                <Stack sx={{justifyContent:"center", alignItems:"center"}}>
+                    <SearchBar mobile={mobile}/>
                 </Stack>
             </Stack>
-            
-            
-            
             
             :
             
