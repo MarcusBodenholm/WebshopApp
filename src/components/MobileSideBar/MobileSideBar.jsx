@@ -14,7 +14,7 @@ const MobileSideBar = () => {
 
     return (
         mobileOpen ? 
-        <Container sx={{width:"100%", height:"100vh", backgroundColor:"grey", paddingTop:"10px"}}>
+        <Container sx={{width:"100%", height:"100vh", backgroundColor:"white", paddingTop:"10px"}}>
             <MobileAccountMenu />
             <Stack>
                 <MobileCategoryList />

@@ -1,6 +1,6 @@
 import "./OrderPageItemList.css"
 import useCartContext from "../../../../contexts/useCartContext"
-import {Typography, Divider, Stack, Button} from "@mui/material"
+import {Typography, Divider, Stack, Button, useTheme, useMediaQuery} from "@mui/material"
 import OrderPageItem from "../OrderPageItem/OrderPageItem";
 import priceFormat from "../../../../helpers/priceFormat";
 import {useNavigate} from "react-router-dom";
@@ -8,6 +8,9 @@ import {useNavigate} from "react-router-dom";
 const OrderPageItemList = () => {
     const {cart, placeOrder} = useCartContext();
     const navigate = useNavigate();
+    const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down('sm'))
+    const itemListHeight = mobile ? "200px" : "450px"
     const handlePlaceOrder = async() => {
         const orderid = await placeOrder();
         navigate("/success?orderid=" + orderid)
@@ -17,7 +20,7 @@ const OrderPageItemList = () => {
             <Typography sx={{paddingBottom:"10px", fontWeight:"bold"}} textAlign="center" variant="h5">Varukorg</Typography>
             {/* <Typography sx={{paddingBottom:"10px", fontWeight:"bold", fontSize:"1.5rem"}} textAlign="center" variant="subtitle1">Dina varor</Typography> */}
             <Divider />
-            <Stack sx={{height:"450px",  marginTop:"20px"}}>
+            <Stack sx={{height:{itemListHeight},  marginTop:"20px"}}>
                 <Stack direction="column" spacing={1} sx={{height: "100%", width: "100%", alignItems:"center", overflowY:"scroll", scrollbarWidth:"none"}}>
                     {cart.items.map((item,idx) => {
                         return <OrderPageItem item={item} key={item.title + item.price +idx} />
@@ -32,7 +35,7 @@ const OrderPageItemList = () => {
                 <Typography textAlign="center" variant="body1" className="checkout-total-sum-title">{priceFormat(cart.total)} SEK</Typography>
             </Stack>
             <Stack sx={{justifyContent:"center", alignItems:"center"}}>
-                <Button variant="contained" sx={{width:"250px"}} onClick={handlePlaceOrder} className="place-order-button">Beställ</Button>
+                <Button variant="contained" sx={{width:"250px", marginBottom:"15px"}} onClick={handlePlaceOrder} className="place-order-button">Beställ</Button>
             </Stack>
         </Stack>
     )

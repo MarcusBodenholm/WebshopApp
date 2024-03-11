@@ -3,8 +3,8 @@ import {styled, alpha} from "@mui/material/styles"
 import { Button, InputBase, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search"
 import { useRef } from "react";
-import {useNavigate} from "react-router-dom"
-
+import {useNavigate} from "react-router-dom";
+import useMobileContext from "../../contexts/useMobileContext.js";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -67,7 +67,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const SearchBar = ({mobile}) => {
     const searchRef = useRef();
     const navigate = useNavigate();
+    const {mobileOpen,setMobileOpen} = useMobileContext();
     const handleSearchClick = () => {
+        if (mobileOpen) {
+          setMobileOpen(false);
+        }
         const baseURL = "/store?query=";
         const encodedSearch = encodeURI(searchRef.current.value);
         navigate(baseURL + encodedSearch);

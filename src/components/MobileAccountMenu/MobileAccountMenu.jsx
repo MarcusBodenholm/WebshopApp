@@ -22,11 +22,11 @@ const MobileAccountMenu = () => {
         auth.signOut();
     }
     const handleLoginClick = () => {
-        setMobileOpen(false)
+        //setMobileOpen(false)
         setLoginOpen(true);
     }
     const handleRegisterClick = () => {
-        setMobileOpen(false)
+        //setMobileOpen(false)
         setRegisterOpen(true);
     }
     const handleAccountClick = () => {
@@ -41,14 +41,14 @@ const MobileAccountMenu = () => {
             <Typography variant="h4">Profil</Typography>
             <Divider />
             <Stack direction="column">
-                <MenuList>
+                <MenuList sx={{marginTop: "-20px", marginLeft:"-15px"}}>
                 {authUser === null ?
                 [<MenuItem onClick={handleLoginClick} key={"logga in"}>Logga in</MenuItem>, 
-                <MenuItem onClick={handleRegisterClick} key={"Registrera"}>Registrera</MenuItem>]
+                <MenuItem sx={{marginTop: "-15px"}} onClick={handleRegisterClick} key={"Registrera"}>Registrera</MenuItem>]
                     :
                     [
                         <MenuItem onClick={handleAccountClick} key={"myaccount"}>Mitt konto</MenuItem>,
-                        <MenuItem onClick={handleLogoutClick} key={"logout"}>Logga ut</MenuItem>
+                        <MenuItem sx={{marginTop: "-15px"}} onClick={handleLogoutClick} key={"logout"}>Logga ut</MenuItem>
                     
                     ]
                 }
